@@ -1,7 +1,7 @@
 [project]
 name = "weather-agent-python"
 version = "0.1.0"
-description = "Weather intelligence Foundry Responses hosted agent for an Aspire sample"
+description = "Trip readiness Foundry Responses hosted agent for an Aspire sample"
 requires-python = ">=3.11"
 dependencies = [
     "agent-framework-core",

@@ -18,6 +18,7 @@
   },
   "packages": {
     "Aspire.Hosting.Foundry": "",
-    "Aspire.Hosting.Python": ""
+    "Aspire.Hosting.Python": "",
+    "Aspire.Hosting.JavaScript": "13.4.0-preview.1.26254.7"
   }
 }

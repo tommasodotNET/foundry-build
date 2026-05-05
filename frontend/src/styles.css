@@ -1,0 +1,244 @@
+:root {
+  color: #172033;
+  background: #eef3f0;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background:
+    linear-gradient(135deg, rgba(231, 237, 239, 0.86), rgba(247, 241, 229, 0.9)),
+    url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=80") center / cover;
+}
+
+.chat-surface {
+  width: min(980px, 100%);
+  height: min(860px, calc(100vh - 56px));
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  overflow: hidden;
+  border: 1px solid rgba(37, 57, 76, 0.16);
+  border-radius: 8px;
+  background: rgba(250, 252, 251, 0.95);
+  box-shadow: 0 24px 70px rgba(24, 41, 55, 0.22);
+}
+
+.chat-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 22px;
+  border-bottom: 1px solid #d9e4df;
+  background: #f8fbfa;
+}
+
+.agent-mark {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: #17324d;
+  background: #d9e5ee;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  font-weight: 720;
+}
+
+.chat-header p {
+  margin: 4px 0 0;
+  color: #617181;
+  font-size: 0.9rem;
+}
+
+.icon-button,
+.composer button {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  color: #f8fbfa;
+  background: #1d5f7a;
+}
+
+.icon-button {
+  color: #233846;
+  background: #e3ece8;
+}
+
+.icon-button:hover,
+.composer button:hover:not(:disabled) {
+  filter: brightness(0.94);
+}
+
+.starter-row {
+  display: flex;
+  gap: 10px;
+  padding: 14px 22px;
+  overflow-x: auto;
+  border-bottom: 1px solid #e5ece9;
+}
+
+.starter-row button {
+  flex: 0 0 auto;
+  max-width: 260px;
+  border: 1px solid #cbd9d4;
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #203646;
+  background: #ffffff;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.starter-row button:hover:not(:disabled) {
+  border-color: #89aea4;
+  background: #f4f8f6;
+}
+
+.message-list {
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px;
+}
+
+.message {
+  display: grid;
+  gap: 6px;
+  max-width: min(720px, 88%);
+}
+
+.message.user {
+  align-self: flex-end;
+}
+
+.message.assistant {
+  align-self: flex-start;
+}
+
+.message-meta {
+  color: #667789;
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.message.user .message-meta {
+  text-align: right;
+}
+
+.message-bubble {
+  min-height: 42px;
+  border-radius: 8px;
+  padding: 12px 14px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #e7efeb;
+  color: #1c2d3a;
+}
+
+.message.user .message-bubble {
+  background: #1d5f7a;
+  color: #ffffff;
+}
+
+.composer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  padding: 18px 22px;
+  border-top: 1px solid #d9e4df;
+  background: #f8fbfa;
+}
+
+.composer input {
+  min-width: 0;
+  border: 1px solid #c7d5d0;
+  border-radius: 8px;
+  padding: 0 14px;
+  color: #172033;
+  background: #ffffff;
+  outline: none;
+}
+
+.composer input:focus {
+  border-color: #1d5f7a;
+  box-shadow: 0 0 0 3px rgba(29, 95, 122, 0.16);
+}
+
+.composer button:disabled,
+.starter-row button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .app-shell {
+    padding: 0;
+  }
+
+  .chat-surface {
+    height: 100vh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .chat-header,
+  .starter-row,
+  .message-list,
+  .composer {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .message {
+    max-width: 94%;
+  }
+}

@@ -1,4 +1,4 @@
-import { AzureContainerRegistryRole, FoundryModels, type FoundryModel, createBuilder } from './.modules/aspire.js';
+import { FoundryModels, type FoundryModel, createBuilder } from './.modules/aspire.js';
 
 const builder = await createBuilder();
 
@@ -17,14 +17,25 @@ const chat = await foundry
 
 const webSearch = await project.addWebSearchTool('web-search');
 
-const webSearcherAgent = await project.addPromptAgent(chat, 'web-searcher')
+const webResearcherAgent = await project.addPromptAgent(chat, 'web-researcher', {
+    instructions: [
+        'You are a generic web research specialist used as a tool by another agent.',
+        'Use web search only to answer the specific external-facts question you were given.',
+        'Return concise findings with source-aware context. Do not make planning decisions for the user.',
+        'If the request does not need current or external information, say that web research is not needed.',
+    ].join(' '),
+})
     .withTool(webSearch);
 
-const weatherAgent = await builder.addPythonApp("weather-agent-python", "./weather-agent-python", "weather_agent_python/main.py")
+const tripAgent = await builder.addPythonApp('trip-readiness-agent', './weather-agent-python', 'weather_agent_python/main.py')
     .withUv()
     .withReference(project).waitFor(project)
     .withReference(chat).waitFor(chat)
-    .withReference(webSearcherAgent).waitFor(webSearcherAgent)
+    .withReference(webResearcherAgent).waitFor(webResearcherAgent)
     .publishAsHostedAgent({project});
+
+await builder.addViteApp('frontend', './frontend')
+    .withNpm()
+    .withReference(tripAgent).waitFor(tripAgent);
 
 await builder.build().run();
