@@ -1,0 +1,23 @@
+{
+  "appHost": {
+    "path": "apphost.ts",
+    "language": "typescript/nodejs"
+  },
+  "sdk": {
+    "version": "13.4.0-preview.1.26229.15"
+  },
+  "channel": "daily",
+  "profiles": {
+    "https": {
+      "applicationUrl": "https://localhost:50062;http://localhost:52582",
+      "environmentVariables": {
+        "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:17077",
+        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:17473"
+      }
+    }
+  },
+  "packages": {
+    "Aspire.Hosting.Foundry": "",
+    "Aspire.Hosting.Python": ""
+  }
+}

@@ -1,0 +1,18 @@
+[project]
+name = "weather-agent-python"
+version = "0.1.0"
+description = "Weather intelligence Foundry Responses hosted agent for an Aspire sample"
+requires-python = ">=3.11"
+dependencies = [
+    "agent-framework-core",
+    "agent-framework-foundry",
+    "agent-framework-foundry-hosting",
+    "azure-identity"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+prerelease = "allow"
