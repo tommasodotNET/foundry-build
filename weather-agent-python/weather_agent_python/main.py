@@ -49,7 +49,7 @@ def main() -> None:
     webSearcherAgent = FoundryAgent(
         project_endpoint=os.getenv("WEB_SEARCHER_PROJECTENDPOINT"),
         agent_name=os.getenv("WEB_SEARCHER_AGENTNAME"),
-        agent_version="1",
+        allow_preview=True,
         credential=DefaultAzureCredential(),
     )
 
