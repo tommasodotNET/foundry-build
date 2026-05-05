@@ -1,5 +1,5 @@
 [project]
-name = "weather-agent-python"
+name = "trip-agent-python"
 version = "0.1.0"
 description = "Trip readiness Foundry Responses hosted agent for an Aspire sample"
 requires-python = ">=3.11"

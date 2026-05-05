@@ -27,7 +27,7 @@ const webResearcherAgent = await project.addPromptAgent(chat, 'web-researcher', 
 })
     .withTool(webSearch);
 
-const tripAgent = await builder.addPythonApp('trip-readiness-agent', './weather-agent-python', 'weather_agent_python/main.py')
+const tripAgent = await builder.addPythonApp('trip-readiness-agent', './trip-agent-python', 'trip_agent_python/main.py')
     .withUv()
     .withReference(project).waitFor(project)
     .withReference(chat).waitFor(chat)
