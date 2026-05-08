@@ -2,9 +2,9 @@ import { FoundryModels, type FoundryModel, createBuilder } from './.modules/aspi
 
 const builder = await createBuilder();
 
-const foundry = await builder.addFoundry('tsfbuild');
+const foundry = await builder.addFoundry('pyfoundrybuild');
 
-const project = await foundry.addProject('tsfproject');
+const project = await foundry.addProject('pyfoundryproject');
 
 const model: FoundryModel = FoundryModels.OpenAI.Gpt41Mini;
 const chat = await foundry
@@ -17,7 +17,7 @@ const chat = await foundry
 
 const webSearch = await project.addWebSearchTool('web-search');
 
-const webResearcherAgent = await project.addPromptAgent(chat, 'web-researcher', {
+const webResearcherAgent = await project.addPromptAgent(chat, 'webresearcher', {
     instructions: [
         'You are a generic web research specialist used as a tool by another agent.',
         'Use web search only to answer the specific external-facts question you were given.',
@@ -34,8 +34,8 @@ const tripAgent = await builder.addPythonApp('trip-readiness-agent', './trip-age
     .withReference(webResearcherAgent).waitFor(webResearcherAgent)
     .publishAsHostedAgent({project});
 
-await builder.addViteApp('frontend', './frontend')
-    .withNpm()
-    .withReference(tripAgent).waitFor(tripAgent);
+// await builder.addViteApp('frontend', './frontend')
+//     .withNpm()
+//     .withReference(tripAgent).waitFor(tripAgent);
 
 await builder.build().run();

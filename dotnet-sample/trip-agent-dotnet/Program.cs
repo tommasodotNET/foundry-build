@@ -11,8 +11,8 @@ using Microsoft.Extensions.AI;
 #pragma warning disable OPENAI001
 
 var port = Environment.GetEnvironmentVariable("DEFAULT_AD_PORT") ?? "8088";
-var projectConnectionString = Environment.GetEnvironmentVariable("ConnectionStrings__tsfproject")
-    ?? throw new InvalidOperationException("ConnectionStrings__tsfproject is not set.");
+var projectConnectionString = Environment.GetEnvironmentVariable("ConnectionStrings__csprojectbuild")
+    ?? throw new InvalidOperationException("ConnectionStrings__csprojectbuild is not set.");
 var chatConnectionString = Environment.GetEnvironmentVariable("ConnectionStrings__chat")
     ?? throw new InvalidOperationException("ConnectionStrings__chat is not set.");
 
@@ -24,14 +24,14 @@ var deploymentName = GetRequiredConnectionValue(chatConnectionBuilder, "Deployme
 
 if (!Uri.TryCreate(projectEndpoint, UriKind.Absolute, out var projectUri) || projectUri is null)
 {
-    throw new InvalidOperationException("ConnectionStrings__tsfproject contains an invalid Endpoint value.");
+    throw new InvalidOperationException("ConnectionStrings__csprojectbuild contains an invalid Endpoint value.");
 }
 
 var credential = new DefaultAzureCredential();
 var foundryProjectClient = new AIProjectClient(projectUri, credential);
 
-var webResearcherAgentName = Environment.GetEnvironmentVariable("WEB_RESEARCHER_AGENTNAME")
-    ?? throw new InvalidOperationException("WEB_RESEARCHER_AGENTNAME is not set.");
+var webResearcherAgentName = Environment.GetEnvironmentVariable("WEBRESEARCHER_AGENTNAME")
+    ?? throw new InvalidOperationException("WEBRESEARCHER_AGENTNAME is not set.");
 var webResearcherAgentReference = new AgentReference(name: webResearcherAgentName);
 var webResearcherAgent = foundryProjectClient.ProjectOpenAIClient
     .GetProjectResponsesClientForAgent(webResearcherAgentReference)

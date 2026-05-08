@@ -57,7 +57,7 @@ async def get_trip_profile() -> str:
 def main() -> None:
     configure_otel_providers(enable_sensitive_data=True)
 
-    project_endpoint = os.environ.get("PROJ_TRIP_URI") or os.environ.get("ConnectionStrings__tsfproject", "")
+    project_endpoint = os.environ.get("PROJ_TRIP_URI") or os.environ.get("ConnectionStrings__pyfoundryproject", "")
     deployment_name = os.environ.get("CHAT_MODELNAME", "gpt41")
 
     if project_endpoint.startswith("Endpoint="):
@@ -70,8 +70,8 @@ def main() -> None:
     );
 
     webResearcherAgent = FoundryAgent(
-        project_endpoint=os.getenv("WEB_RESEARCHER_PROJECTENDPOINT"),
-        agent_name=os.getenv("WEB_RESEARCHER_AGENTNAME"),
+        project_endpoint=os.getenv("WEBRESEARCHER_PROJECTENDPOINT"),
+        agent_name=os.getenv("WEBRESEARCHER_AGENTNAME"),
         allow_preview=True,
         credential=DefaultAzureCredential(),
     )
